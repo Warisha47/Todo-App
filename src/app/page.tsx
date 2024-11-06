@@ -29,16 +29,16 @@ if(obj){
 //edit func
 
 const editItems=(id:any)=>{
-  let obj : any = todos.find(item=>item.id == id)
-  setInput(obj.task)
-  setId(obj.id)
+  let obj1 : any = todos.find(item=>item.id == id)
+  setInput(obj1.task)
+  setId(obj1.id)
 
 }
 
 const delItem= (id:any)=>{
-  let newArray = todos.filter((item)=>item.id !== id)   //jis m id h us obj ko hatare he
+  let newArray1 = todos.filter((item)=>item.id !== id)   //jis m id h us obj ko hatare he
  
-   setTodos([...newArray])
+   setTodos([...newArray1])
 }
 
   return (
@@ -56,8 +56,9 @@ const delItem= (id:any)=>{
         className="w-[40%] text-lg p-2 ml-20 border-b-2 rounded focus:outline-none "
          type="text" placeholder="What's your mind today?" />
 
+
         <input
-        onChange={(e)=>setId(e.target.value)}
+        onChange={(e:any)=>setId(e.target.value)}
         value={id}
         className="w-[15%] text-lg p-2 mr-72 rounded focus:outline-none"
          type="number"
