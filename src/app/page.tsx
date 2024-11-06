@@ -27,14 +27,14 @@ if(obj){
 }
 
 //edit func
-
+//@typescript-eslint/no-explicit-any
 const editItems=(id:any)=>{
   let obj1 : any = todos.find(item=>item.id == id)
   setInput(obj1.task)
   setId(obj1.id)
 
 }
-
+//@typescript-eslint/no-explicit-any
 const delItem= (id:any)=>{
   let newArray1 = todos.filter((item)=>item.id !== id)   //jis m id h us obj ko hatare he
  
@@ -50,6 +50,7 @@ const delItem= (id:any)=>{
       <div className="flex justify-center gap-4 mt-5 ">
 
         <input 
+        // @typescript-eslint/no-explicit-any
         onChange={(e:any)=>setInput(e.target.value)}
         value={inputVal}
         
@@ -58,6 +59,7 @@ const delItem= (id:any)=>{
 
 
         <input
+        // @typescript-eslint/no-explicit-any
         onChange={(e:any)=>setId(e.target.value)}
         value={id}
         className="w-[15%] text-lg p-2 mr-72 rounded focus:outline-none"
@@ -80,9 +82,10 @@ const delItem= (id:any)=>{
         {/* grid items */}
 
         {
+          // @typescript-eslint/no-explicit-any
           todos.map((item:any,i:any)=>{
             return(
-              
+            // @typescript-eslint/no-explicit-any  
         <div className="shadow bg-yellow-200 p-2 " key={i}>
         <div className="flex justify-between ">
           <span className="shadow rounded-full h-8 w-8 mx-0 text-center p-1">{i+1}</span>
