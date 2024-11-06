@@ -1,101 +1,93 @@
-import Image from "next/image";
+"use client"
+import { useState } from "react";
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  //define state
+  const [todos, setTodos] = useState([{ task: "Portfilio", id:1 }, { task: "Hackathon 2", id:2 },])
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  //input state
+  const[inputVal,setInput]=useState("")
+  const[id,setId]=useState(0)
+//functions
+
+const addItems=()=>{
+  setTodos([...todos,{task:inputVal,id:id}])
+ setInput("")
+ setId(0)
+}
+
+//edit func
+
+const editItem=(id:any)=>{
+  let obj : any = todos.find(item=>item.id == id)
+  setInput(obj.task)
+  setId(obj.id)
+
+}
+
+  return (
+    <div className="max-w-auto mx-auto p-2  flex-wrap bg-orange-700  ">
+      <h1 className=" text-white font-serif font-bold text-center text-[40px] ">Todo App by Wajiha</h1>
+
+      {/* start input div */}
+
+      <div className="flex justify-center gap-4 mt-5 ">
+
+        <input 
+        onChange={(e:any)=>setInput(e.target.value)}
+        value={inputVal}
+        
+        className="w-[40%] text-lg p-2 ml-20 border-b-2 rounded focus:outline-none "
+         type="text" placeholder="What's your mind today?" />
+
+        <input
+        onChange={(e)=>setId(e.target.value)}
+        value={id}
+        className="w-[15%] text-lg p-2 mr-72 rounded focus:outline-none"
+         type="number"
+          placeholder="write id" />
+
+        <button onClick={addItems} className="p-2 rounded mr-5  bg-yellow-500 w-[10%] hover:bg-orange-600 text-white">Add task</button>
+      </div>
+
+      {/* end input div */}
+
+      <h1 className="text-center text-4xl mt-10 font-semibold underline font-serif">Task List</h1>
+
+      {/* task list */}
+
+
+      <div className="grid grid-cols-2 gap-4 mt-5">
+
+
+        {/* grid items */}
+
+        {
+          todos.map((item:any,i:any)=>{
+            return(
+              
+        <div className="shadow bg-yellow-200 p-2 " key={i}>
+        <div className="flex justify-between ">
+          <span className="shadow rounded-full h-8 w-8 mx-0 text-center p-1">{i+1}</span>
+          <span className="shadow rounded-full h-8 w-8 mx-0 text-center p-1 bg-red-600 cursor-pointer">X</span>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        {/* task data */}
+
+        <div className="mt-1">{item.task}</div>
+        <div>
+          <h2 onClick={()=>editItem(item.id)} className="text-right  hover:cursor-pointer ">Edit</h2>
+          <h2 className="">id:{item.id}</h2>
+        </div>
+      </div>
+
+
+            )
+          })
+        }
+
+
+      </div>
     </div>
   );
 }
