@@ -12,6 +12,15 @@ export default function Home() {
 //functions
 
 const addItems=()=>{
+let obj = todos.find(item=>item.id == id)
+if(obj){
+  let newArray = todos.filter(item=>item.id !== obj.id)
+  setTodos([...newArray,{task:inputVal,id:id}])
+  setInput("")
+  setId(0)
+  return
+}
+
   setTodos([...todos,{task:inputVal,id:id}])
  setInput("")
  setId(0)
@@ -24,6 +33,12 @@ const editItem=(id:any)=>{
   setInput(obj.task)
   setId(obj.id)
 
+}
+
+const delItem= (id:any)=>{
+  let newArray = todos.filter((item)=>item.id !== id)   //jis m id h us obj ko hatare he
+ 
+   setTodos([...newArray])
 }
 
   return (
@@ -70,7 +85,7 @@ const editItem=(id:any)=>{
         <div className="shadow bg-yellow-200 p-2 " key={i}>
         <div className="flex justify-between ">
           <span className="shadow rounded-full h-8 w-8 mx-0 text-center p-1">{i+1}</span>
-          <span className="shadow rounded-full h-8 w-8 mx-0 text-center p-1 bg-red-600 cursor-pointer">X</span>
+          <span onClick={()=>delItem(item.id)} className="shadow rounded-full h-8 w-8 mx-0 text-center p-1 bg-red-600 hover:cursor-pointer">X</span>
         </div>
         {/* task data */}
 
