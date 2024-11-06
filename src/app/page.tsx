@@ -28,7 +28,7 @@ if(obj){
 
 //edit func
 
-const editItem=(id:any)=>{
+const editItems=(id:any)=>{
   let obj : any = todos.find(item=>item.id == id)
   setInput(obj.task)
   setId(obj.id)
@@ -91,7 +91,7 @@ const delItem= (id:any)=>{
 
         <div className="mt-1">{item.task}</div>
         <div>
-          <h2 onClick={()=>editItem(item.id)} className="text-right  hover:cursor-pointer ">Edit</h2>
+          <h2 onClick={()=>editItems(item.id)} className="text-right  hover:cursor-pointer ">Edit</h2>
           <h2 className="">id:{item.id}</h2>
         </div>
       </div>
