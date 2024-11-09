@@ -4,39 +4,40 @@ import { useState } from "react";
 
 export default function Home() {
   //define state
-  const [todos, setTodos] = useState([{ task: "Portfilio", id:1 }, { task: "Hackathon 2", id:2 },])
+  const [todos, setTodos] = useState([{ task: "Portfilio", id:"1" }, { task: "Hackathon 2", id:"2" },])
 
   //input state
   const[inputVal,setInput]=useState("")
-  const[id,setId]=useState(0)
+  const[id,setId]=useState("")
 //functions
 
 const addItems=()=>{
-let obj = todos.find(item=>item.id == id)
+const obj = todos.find(item=>item.id == id)
 if(obj){
-  let newArray = todos.filter(item=>item.id !== obj.id)
+  const newArray = todos.filter(item=>item.id !== obj.id)
   setTodos([...newArray,{task:inputVal,id:id}])
   setInput("")
-  setId(0)
+  setId("")
   return
 }
 
   setTodos([...todos,{task:inputVal,id:id}])
  setInput("")
- setId(0)
+ setId("")
 }
 
 //edit func
-//@typescript-eslint/no-explicit-any
-const editItems=(id:any)=>{
-  let obj1 : any = todos.find(item=>item.id == id)
-  setInput(obj1.task)
-  setId(obj1.id)
 
+const editItems=(id:string)=>{
+  const obj  = todos.find((item)=>item.id === id)
+  if (obj){
+  setInput(obj.task)
+  setId(obj.id)
+  }
 }
-//@typescript-eslint/no-explicit-any
-const delItem= (id:any)=>{
-  let newArray1 = todos.filter((item)=>item.id !== id)   //jis m id h us obj ko hatare he
+
+const delItem = (id:string)=>{
+  const newArray1 = todos.filter((item)=>item.id !== id)   //jis m id h us obj ko hatare he
  
    setTodos([...newArray1])
 }
@@ -50,8 +51,8 @@ const delItem= (id:any)=>{
       <div className="flex justify-center gap-4 mt-5 ">
 
         <input 
-        // @typescript-eslint/no-explicit-any
-        onChange={(e:any)=>setInput(e.target.value)}
+        
+        onChange={(e)=>setInput(e.target.value)}
         value={inputVal}
         
         className="w-[40%] text-lg p-2 ml-20 border-b-2 rounded focus:outline-none "
@@ -59,8 +60,8 @@ const delItem= (id:any)=>{
 
 
         <input
-        // @typescript-eslint/no-explicit-any
-        onChange={(e:any)=>setId(e.target.value)}
+        
+        onChange={(event)=>setId(event.target.value)}
         value={id}
         className="w-[15%] text-lg p-2 mr-72 rounded focus:outline-none"
          type="number"
@@ -82,10 +83,10 @@ const delItem= (id:any)=>{
         {/* grid items */}
 
         {
-          // @typescript-eslint/no-explicit-any
-          todos.map((item:any,i:any)=>{
+          
+          todos.map((item,i)=>{
             return(
-            // @typescript-eslint/no-explicit-any  
+            
         <div className="shadow bg-yellow-200 p-2 " key={i}>
         <div className="flex justify-between ">
           <span className="shadow rounded-full h-8 w-8 mx-0 text-center p-1">{i+1}</span>
