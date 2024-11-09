@@ -44,7 +44,7 @@ const delItem = (id:string)=>{
 
   return (
     <div className="max-w-auto mx-auto p-2  flex-wrap bg-orange-700  ">
-      <h1 className=" text-white font-serif font-bold text-center text-[40px] ">Todo App by Wajiha</h1>
+      <h1 className=" text-white font-serif font-bold text-center text-[40px] ">Todo App by Warisha</h1>
 
       {/* start input div */}
 
